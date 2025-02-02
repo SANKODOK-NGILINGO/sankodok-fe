@@ -1,19 +1,26 @@
+"use client";
+
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
 import { MdOutlineLogin } from "react-icons/md";
 import logo from "@public/assets/logo/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
+import {  useRouter } from "next/navigation";
 
 export default function Hero() {
+  const [selectedClass, setSelectedClass] = useState<string>("");
+  const router = useRouter()
   return (
     <div className="min-h-screen grid bg-gradient-to-b from-gem to-magenta">
-      <header className="mx-auto w-full px-8 py-4 bg-gradient-to-b from-[#160039] to-[#3D009F]/0">
+      <header className="mx-auto w-full px-8 py-4 bg-gradient-to-b from-rock to-[#3D009F]/0">
         <nav className="flex items-center justify-center border-b h-max py-4 w-full">
           <Image
             src={logo}
@@ -35,6 +42,7 @@ export default function Hero() {
           <Button
             variant="outline"
             className="text-white duration-500 border-white border-2 bg-transparent rounded-lg ml-auto px-5"
+            onClick={() => router.push("/login")}
           >
             <MdOutlineLogin className="mr-2 font-bold" />
             Log in
@@ -52,11 +60,9 @@ export default function Hero() {
           today.
         </p>
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 max-w-md mx-auto">
-          <Select>
+          <Select onValueChange={setSelectedClass}>
             <SelectTrigger className="w-full md:w-[450px] bg-white text-gray-900">
-              <span className="text-neutral-400 font-medium">
-                Choose English Class
-              </span>
+              <SelectValue placeholder="Choose English Class" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="toefl" className="font-bold">
@@ -67,9 +73,14 @@ export default function Hero() {
               </SelectItem>
             </SelectContent>
           </Select>
-          <Button className="w-full md:w-auto font-semibold bg-white/80 text-gray-900 border border-black">
-            Get Started
-            <span className="ml-4 font-extrabold">→</span>
+          <Button
+            className="w-full md:w-auto font-semibold bg-white/80 text-gray-900 border border-black hover:bg-white"
+            disabled={!selectedClass}
+          >
+            <Link href={`/signup/${selectedClass}`}>
+              Get Started
+              <span className="ml-4 font-extrabold">→</span>
+            </Link>
           </Button>
         </div>
       </main>
