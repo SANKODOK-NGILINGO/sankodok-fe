@@ -3,10 +3,12 @@ import logo from "@public/assets/logo/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { redirect } from "next/navigation";
+import { LogIn } from "lucide-react";
 
 const Navbar = () => {
   return (
-    <header className="mx-auto w-full px-8 py-4 bg-gradient-to-b from-[#160039] to-[#3D009F]/0">
+    <header className="mx-auto fixed top-0 w-full px-8 py-4 bg-gradient-to-b from-[#160039] to-[#3D009F]/0 z-[1000]">
       <nav className="flex items-center justify-between ">
         <Image src={logo} alt="Logo" className="h-24 w-24" />
         <div className="hidden md:flex items-center gap-24">
@@ -24,8 +26,10 @@ const Navbar = () => {
           variant="outline"
           className="text-white border-white border-2 bg-transparent rounded-lg"
         >
-          <span className="mr-2">→</span>
-          Log in
+          <LogIn className="mr-3" />
+          <Link href="/login" className="text-white hover:text-black">
+            Log in
+          </Link>
         </Button>
       </nav>
     </header>
