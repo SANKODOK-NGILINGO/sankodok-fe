@@ -1,6 +1,5 @@
 import type { Question, CategoryInfo, QuizCategory } from "@/type/question";
 import { BookOpenText, Headphones, PenLine, AudioLines } from "lucide-react";
-
 export const quizQuestions: Question[] = [
   // Reading questions (10 questions)
   {

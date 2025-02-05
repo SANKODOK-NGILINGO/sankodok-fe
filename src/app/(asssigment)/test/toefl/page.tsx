@@ -31,9 +31,7 @@ export default function QuizPage() {
   });
 
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-  const [pendingNavigation, setPendingNavigation] = useState<"next" | null>(
-    null
-  );
+  const [, setPendingNavigation] = useState<"next" | null>(null);
 
   const currentCategoryQuestions = useMemo(
     () => quizQuestions.filter((q) => q.category === quizState.currentCategory),
@@ -84,7 +82,7 @@ export default function QuizPage() {
   }, [quizState.currentCategory, handleSubmit]);
 
   const handleAnswerUpdate = useCallback(
-    (answer: any) => {
+    (answer: unknown) => {
       setQuizState((prev) => ({
         ...prev,
         answers: { ...prev.answers, [currentQuestion.id]: answer },

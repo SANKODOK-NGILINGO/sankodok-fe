@@ -3,7 +3,6 @@ import logo from "@public/assets/logo/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { redirect } from "next/navigation";
 import { LogIn } from "lucide-react";
 
 const Navbar = () => {

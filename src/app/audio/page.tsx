@@ -3,15 +3,17 @@
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mic, Square, Play } from "lucide-react";
+import { Mic, Square, Play, Pause } from "lucide-react";
 
 export default function AudioRecorder() {
   const [isRecording, setIsRecording] = useState(false);
   const [recordings, setRecordings] = useState<{ blob: Blob; url: string }[]>(
     []
   );
+  const [isPlaying, setIsPlaying] = useState(false);
   const mediaRecorder = useRef<MediaRecorder | null>(null);
   const chunks = useRef<Blob[]>([]);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     // Cleanup function
@@ -55,6 +57,17 @@ export default function AudioRecorder() {
   const playRecording = (url: string) => {
     const audio = new Audio(url);
     audio.play();
+  };
+
+  const togglePlay = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
   };
 
   return (
@@ -103,6 +116,34 @@ export default function AudioRecorder() {
               </ul>
             )}
           </div>
+        </CardContent>
+      </Card>
+      <Card className="mt-4">
+        <CardHeader>
+          <CardTitle>Audio Player</CardTitle>
+        </CardHeader>
+        <CardContent className="flex flex-col items-center">
+          <audio
+            ref={audioRef}
+            src="/audio/soal1.mp3"
+            typeof="mp3"
+            onPlay={() => setIsPlaying(true)}
+            onPause={() => setIsPlaying(false)}
+          />
+          <Button onClick={togglePlay} className="mb-2">
+            {isPlaying ? (
+              <>
+                <Pause className="mr-2 h-4 w-4" /> Pause
+              </>
+            ) : (
+              <>
+                <Play className="mr-2 h-4 w-4" /> Play
+              </>
+            )}
+          </Button>
+          <p className="text-sm text-gray-500">
+            {isPlaying ? "Now playing: soal1.mp3" : "Click play to start audio"}
+          </p>
         </CardContent>
       </Card>
     </div>

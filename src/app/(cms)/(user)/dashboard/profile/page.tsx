@@ -25,10 +25,11 @@ export default function ProfileForm() {
         <div className="space-y-6">
           <div className="space-y-4">
             <div>
-              <Label htmlFor="name1">Name</Label>
+              <Label htmlFor="username">username</Label>
               <Input
-                id="name1"
+                id="username"
                 placeholder="Your Name"
+                value="Haris"
                 className="mt-1.5 border-black border"
               />
             </div>
@@ -38,6 +39,7 @@ export default function ProfileForm() {
               <Input
                 id="name2"
                 placeholder="Your Name"
+                value="Naufal Haris"
                 className="mt-1.5 border-black border"
               />
             </div>
@@ -48,6 +50,7 @@ export default function ProfileForm() {
                 id="email"
                 type="email"
                 placeholder="Your Email"
+                value="haris@gmail.com"
                 className="mt-1.5 border-black border"
               />
             </div>
@@ -59,6 +62,7 @@ export default function ProfileForm() {
                   id="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="Your Password"
+                  value="nansdkanskdk"
                   className="mt-1.5 border-black border"
                 />
                 <Button
@@ -79,7 +83,7 @@ export default function ProfileForm() {
 
             <div className="space-y-3">
               <Label>Your Gender</Label>
-              <RadioGroup defaultValue="woman" className="flex gap-4">
+              <RadioGroup defaultValue="man" className="flex gap-4">
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="woman" id="woman" />
                   <Label htmlFor="woman">Woman</Label>
@@ -98,7 +102,7 @@ export default function ProfileForm() {
                   <Label className="text-sm text-muted-foreground">Month</Label>
                   <Select>
                     <SelectTrigger>
-                      <SelectValue placeholder="Month" />
+                      <SelectValue placeholder="March" />
                     </SelectTrigger>
                     <SelectContent>
                       {Array.from({ length: 12 }, (_, i) => (
@@ -115,7 +119,7 @@ export default function ProfileForm() {
                   <Label className="text-sm text-muted-foreground">Date</Label>
                   <Select>
                     <SelectTrigger>
-                      <SelectValue placeholder="Date" />
+                      <SelectValue placeholder="22" />
                     </SelectTrigger>
                     <SelectContent>
                       {Array.from({ length: 31 }, (_, i) => (
@@ -130,7 +134,7 @@ export default function ProfileForm() {
                   <Label className="text-sm text-muted-foreground">Year</Label>
                   <Select>
                     <SelectTrigger>
-                      <SelectValue placeholder="Year" />
+                      <SelectValue placeholder="2004" />
                     </SelectTrigger>
                     <SelectContent>
                       {Array.from({ length: 100 }, (_, i) => {

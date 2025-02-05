@@ -9,7 +9,7 @@ interface props {
 }
 
 export default function CharSelectorIELTS({ char1, char2 }: props) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [, setIsOpen] = useState(false);
   const handleClick = () => {
     setIsOpen(true);
     return <GoalsModal />;

@@ -44,7 +44,7 @@ export type Question =
 export interface QuizState {
   currentCategory: QuizCategory;
   currentQuestionIndex: number;
-  answers: Record<number, any>;
+  answers: Record<number, string | number | boolean | null>;
   timeRemaining: Record<QuizCategory, number>;
   completedCategories: QuizCategory[]; // Add this line
 }
