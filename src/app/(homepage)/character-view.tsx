@@ -46,14 +46,14 @@ export function CharacterView() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/20 min-h-screen w-full z-10"
+            className="fixed inset-0 bg-black/20 min-h-screen w-full z-[2000]"
           />
         )}
       </AnimatePresence>
       <AnimatePresence>
         a
         {active && typeof active === "object" ? (
-          <div className="fixed inset-0 grid place-items-center z-[100]">
+          <div className="fixed inset-0 grid place-items-center z-[2001]">
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}

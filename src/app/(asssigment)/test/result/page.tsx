@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { quizQuestions } from "@/lib/quiz-data";
 import { ScoreCard } from "@/components/quiz/score-card";
 import type { QuizState, Question } from "@/type/question";
+import { useRouter } from "next/navigation";
 
 export default function ResultPage() {
   const searchParams = useSearchParams();
@@ -12,6 +13,7 @@ export default function ResultPage() {
   const [categoryScores, setCategoryScores] = useState<Record<string, number>>(
     {}
   );
+  const router = useRouter();
 
   useEffect(() => {
     const stateParam = searchParams.get("state");
@@ -53,12 +55,21 @@ export default function ResultPage() {
     }
   }, [searchParams]);
 
+  useEffect(() => {
+    alert("Auto direct to dashboard on 5 seconds");
+    setTimeout(() => {
+      router.push("/dashboard");
+    }, 5000);
+  });
+
   if (!quizState || !Object.keys(categoryScores).length) {
     return <div>Loading...</div>;
   }
 
-  // Calculate overall band score
-  const overallBand = Object.values(categoryScores).reduce((sum, score) => sum + score, 0);
+  const overallBand = Object.values(categoryScores).reduce(
+    (sum, score) => sum + score,
+    0
+  );
 
   return (
     <section className="min-h-screen bg-gradient-to-b from-magenta to-vivid flex flex-col items-center py-16 px-12">
@@ -66,9 +77,7 @@ export default function ResultPage() {
         <h1 className="text-5xl font-bold mb-4">
           {"Good Job, mates! See you're score!"}
         </h1>
-        <h3 className="text-xl">
-          Toefl IBT Equivalent: {overallBand}
-        </h3>
+        <h3 className="text-xl">Toefl IBT Equivalent: {overallBand}</h3>
       </header>
 
       <div className="container max-w-4xl bg-white px-12 py-16 rounded-3xl space-y-12">
