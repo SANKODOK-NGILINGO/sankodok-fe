@@ -21,17 +21,25 @@ export default function ProfileForm() {
 
   return (
     <div className="container mx-auto p-6">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+      <div className="grid grid-cols-2 gap-8 max-w-6xl mx-auto">
         <div className="space-y-6">
           <div className="space-y-4">
             <div>
               <Label htmlFor="name1">Name</Label>
-              <Input id="name1" placeholder="Your Name" className="mt-1.5" />
+              <Input
+                id="name1"
+                placeholder="Your Name"
+                className="mt-1.5 border-black border"
+              />
             </div>
 
             <div>
               <Label htmlFor="name2">Name</Label>
-              <Input id="name2" placeholder="Your Name" className="mt-1.5" />
+              <Input
+                id="name2"
+                placeholder="Your Name"
+                className="mt-1.5 border-black border"
+              />
             </div>
 
             <div>
@@ -40,7 +48,7 @@ export default function ProfileForm() {
                 id="email"
                 type="email"
                 placeholder="Your Email"
-                className="mt-1.5"
+                className="mt-1.5 border-black border"
               />
             </div>
 
@@ -51,13 +59,13 @@ export default function ProfileForm() {
                   id="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="Your Password"
-                  className="mt-1.5"
+                  className="mt-1.5 border-black border"
                 />
                 <Button
                   type="button"
                   variant="ghost"
                   size="icon"
-                  className="absolute right-2 top-[calc(50%-12px)]"
+                  className="absolute right-2 top-0"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
@@ -140,12 +148,14 @@ export default function ProfileForm() {
             </div>
           </div>
         </div>
-        <div className="block">
-          <div className="bg-[#00d7ff] rounded-3xl h-full w-full p-8">
+        <div className="block space-y-2">
+          <h2 className="font-semibold ml-2">Character</h2>
+          <div className="bg-[#00d7ff] rounded-3xl h-full w-full p-8 relative border-2 border-black">
             <Image
               src={char}
               alt="Character illustration"
-              className="w-full h-full object-contain"
+              fill
+              className="w-full h-full object-contain pt-12"
             />
           </div>
         </div>
