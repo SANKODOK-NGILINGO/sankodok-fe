@@ -44,7 +44,8 @@ export type Question =
 export interface QuizState {
   currentCategory: QuizCategory;
   currentQuestionIndex: number;
-  answers: Record<number, string | number | boolean | null>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  answers: Record<number, any>;
   timeRemaining: Record<QuizCategory, number>;
   completedCategories: QuizCategory[]; // Add this line
 }
