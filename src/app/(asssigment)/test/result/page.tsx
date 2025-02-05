@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { quizQuestions } from "@/lib/quiz-data";
@@ -8,6 +9,13 @@ import type { QuizState, Question } from "@/type/question";
 import { useRouter } from "next/navigation";
 
 export default function ResultPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ResultContent />
+    </Suspense>
+  );
+}
+const ResultContent = () => {
   const searchParams = useSearchParams();
   const [quizState, setQuizState] = useState<QuizState | null>(null);
   const [categoryScores, setCategoryScores] = useState<Record<string, number>>(
@@ -56,7 +64,6 @@ export default function ResultPage() {
   }, [searchParams]);
 
   useEffect(() => {
-    alert("Auto direct to dashboard on 5 seconds");
     setTimeout(() => {
       router.push("/dashboard");
     }, 5000);
@@ -121,4 +128,4 @@ export default function ResultPage() {
       </div>
     </section>
   );
-}
+};
